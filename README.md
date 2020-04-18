@@ -169,3 +169,41 @@ python3 gen_sa_accounts.py --download-keys project_id
 ```
 python3 add_to_team_drive.py -d SharedTeamDriveSrcID
 ```
+
+#### For running in Colab
+
+## At first do everything that's already discussed like OAuth api credentials file and upload the credentials.json file in the repo
+```
+!pip install -r requirements.txt
+```
+## clone the rep in which the bot is in
+```
+!git clone https://github.com/death-angel-141/bot-original.git 
+```
+```
+%cd bot-original
+```
+## At first generate string session by entering tg api id,api hash and bot token and then the string generated put that in string session in config.env file (Even edit the config.env file)
+```
+!python generate_string_session.py 
+```
+## Generate token.pickle file and upload it to the github repository
+```!python generate_drive_token.py ```
+```%cd .. ``` 
+## Remove the repo,then again clone the repo
+```!rm -r bot-original``` 
+```%cd bot-original ```
+## Then install the Heroku CLI
+```!curl https://cli-assets.heroku.com/install.sh | sh```
+## Login the heroku in a different tab of the browser and follow the remaining steps
+```!heroku login ```
+## App name
+```
+!heroku create mirror-torrent-magnets-bot 
+!heroku git:remote -a mirror-torrent-magnets-bot
+!heroku stack:set container
+!git push heroku master --force
+!heroku ps:scale worker=0
+!heroku ps:scale worker=1 
+```
+## done
