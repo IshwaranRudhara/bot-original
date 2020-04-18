@@ -189,6 +189,7 @@ python3 add_to_team_drive.py -d SharedTeamDriveSrcID
 ```
 #### Generate token.pickle file and upload it to the github repository
 ```!python generate_drive_token.py ```
+#### Don't forget the dots!!!
 ```%cd .. ``` 
 #### Remove the repo,then again clone the repo
 ```!rm -r bot-original``` 
